@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.simulationview.HelloController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane fx:id="displayArea" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin>
+            </Pane>
+         </center>
+         <right>
+            <AnchorPane maxWidth="150.0" prefHeight="200.0" prefWidth="67.0" style="-fx-border-color: Black;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" maxHeight="30.0" text="Communication" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextArea fx:id="communicationArea" editable="false" minWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+         </right>
+         <bottom>
+            <HBox alignment="CENTER_LEFT" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" spacing="7.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button minWidth="36.0" mnemonicParsing="false" onAction="#onSkipBeginButtonClick" prefHeight="11.0" text="&lt;&lt;" />
+                <Button minWidth="36.0" mnemonicParsing="false" onAction="#onPreviousFrameButtonClick" text="&lt;" />
+                  <Button fx:id="pauseButton" minWidth="36.0" mnemonicParsing="false" onAction="#onPauseButtonClick" text="II" />
+                  <Button minWidth="36.0" mnemonicParsing="false" onAction="#onNextFrameButtonClick" text="&gt;" />
+                  <Button minWidth="36.0" mnemonicParsing="false" onAction="#onSkipEndButtonClick" text="&gt;&gt;" />
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </HBox>
+         </bottom>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+         <top>
+            <AnchorPane maxHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="curTimeLabel" alignment="TOP_LEFT" maxHeight="20.0" text="0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <FlowPane fx:id="legendPane" hgap="5.0" layoutX="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
