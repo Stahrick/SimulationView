@@ -21,15 +21,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DataReader {
-    private static AgentIDToName agentIDToName = new AgentIDToName();
+    private static final AgentIDToName agentIDToName = new AgentIDToName();
 
-    public static Object[] readData(String path) {
+    public static Object[] readData(String[] paths) {
         try {
-            ArrayList<Agent> agents = readAgentConfig(path);
-            HashMap<Integer, ArrayList<Position>> positions = readMovements(path);
-            HashMap<Integer, ArrayList<Message>> messages = readCommunication(path);
-            Object[] dataFiles = {positions, messages, agents};
-            return dataFiles;
+            ArrayList<Agent> agents = readAgentConfig(paths[0]);
+            HashMap<Integer, ArrayList<Position>> positions = readMovements(paths[1]);
+            HashMap<Integer, ArrayList<Message>> messages = readCommunication(paths[1]);
+            return new Object[]{positions, messages, agents};
         } catch (IOException | ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
@@ -42,8 +41,7 @@ public class DataReader {
 
         File f = new File(path, fileName);
         if(!f.exists()) {
-            System.err.println("Coudln't read positions.csv");
-            System.err.println("Used files have to be in the same directory");
+            System.err.println("Coudln't read positions.csv in folder: " + path);
             System.exit(1);
         }
 
@@ -76,8 +74,7 @@ public class DataReader {
 
         File f = new File(path, fileName);
         if(!f.exists()) {
-            System.err.println("Couldn't read communication.csv");
-            System.err.println("Used files have to be in the same directory");
+            System.err.println("Couldn't read communication.csv in folder: " + path);
             System.exit(1);
         }
 
@@ -105,14 +102,12 @@ public class DataReader {
     }
 
     private static ArrayList<Agent> readAgentConfig(String path) throws IOException, ParserConfigurationException, SAXException {
-        String fileName = "input_example.xml";
-        ArrayList<Agent> agents = new ArrayList();
+        ArrayList<Agent> agents = new ArrayList<>();
         HashMap<Integer, String> convertId = new HashMap<>();
 
-        File file = new File(path, fileName);
+        File file = new File(path);
         if(!file.exists()) {
-            System.err.println("Couldn't read input_example.xml");
-            System.err.println("Used files have to be in the same directory");
+            System.err.println("Couldn't read config file with given path: " + path);
             System.exit(1);
         }
 

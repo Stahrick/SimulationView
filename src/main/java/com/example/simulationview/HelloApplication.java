@@ -39,15 +39,42 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        loadData("./");
+        determinePaths(args);
         launch();
     }
 
-    private static void loadData(String path) {
-        Object[] dataFile = DataReader.readData(path);
+    private static void loadData(String[] paths) {
+        Object[] dataFile = DataReader.readData(paths);
         positions = (HashMap<Integer, ArrayList<Position>>) dataFile[0];
         communication = (HashMap<Integer, ArrayList<Message>>) dataFile[1];
         agents = (ArrayList<Agent>) dataFile[2];
     }
 
+    private static void determinePaths(String[] args) {
+        String configPath = null;
+        String exportsPath = null;
+        if(args.length == 2) {
+            configPath = args[0];
+            exportsPath = args[1];
+        }else if(args.length == 0) {
+            configPath = "./input_example.xml";
+            exportsPath = "./";
+        }else if(args.length == 1 && args[0].equalsIgnoreCase("help")) {
+            printHelp();
+            System.exit(1);
+        } else{
+            printHelp();
+            System.exit(1);
+        }
+        loadData(new String[]{configPath, exportsPath});
+    }
+
+    private static void printHelp() {
+        System.out.println("----HELP----");
+        System.out.println("If started without args, the current path is search for imported files");
+        System.out.println("ARGS:");
+        System.out.println("Arg1: Config File Path");
+        System.out.println("Arg2: Exports Folder Path");
+        System.out.println("----HELP----");
+    }
 }
