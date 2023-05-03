@@ -121,7 +121,7 @@ public class DataReader {
         DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
         Document doc = builder.parse(file);
 
-        NodeList agentList = doc.getElementsByTagName("agentpattern");
+        NodeList agentList = doc.getElementsByTagName("agent");
 
         for(int i = 0; i < agentList.getLength(); i++) {
             if(agentList.item(i).getNodeType() == Node.ELEMENT_NODE) {
